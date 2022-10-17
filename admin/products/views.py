@@ -20,22 +20,22 @@ class ProductViewSet(viewsets.ViewSet):
         serializer.save()
         # publish('product_created', serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-        pass
+        
 
     def retrieve(self, request, pk=None):
-        # product = Product.objects.get(id=pk)
-        # serializer = ProductSerializer(product)
-        # return Response(serializer.data)
-        pass
+        product = Product.objects.get(id=pk)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+      
 
     def update(self, request, pk=None):
-        # product = Product.objects.get(id=pk)
-        # serializer = ProductSerializer(instance=product, data=request.data)
-        # serializer.is_valid(raise_exception=True)
-        # serializer.save()
+        product = Product.objects.get(id=pk)
+        serializer = ProductSerializer(instance=product, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         # publish('product_updated', serializer.data)
-        # return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-        pass
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+      
 
     def destroy(self, request, pk=None):
         # product = Product.objects.get(id=pk)
